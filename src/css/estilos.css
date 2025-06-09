@@ -158,3 +158,11 @@ body {
     padding: 20px;
     margin-top: 60px;
 }
+
+.esconder {
+    display: flex;
+}
+
+.mostrar {
+    display: block;
+}
