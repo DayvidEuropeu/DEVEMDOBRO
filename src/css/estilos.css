@@ -152,7 +152,7 @@ body {
 
 .rodape {
     display: flex;
-    background-color: #6528d3;
+    background-color: rgb(31, 0, 59);
     justify-content: center;
     color: #ededed;
     padding: 20px;
@@ -160,7 +160,7 @@ body {
 }
 
 .esconder {
-    display: flex;
+    display: none;
 }
 
 .mostrar {

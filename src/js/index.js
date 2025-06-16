@@ -21,9 +21,23 @@ botaoFiltrar.addEventListener('click', function () {
 
         let mostrarCarta = true;
 
-        console.log('a carta foi: ', categoriaSelecionada);
+        const temFiltroDeCategoria = categoriaSelecionada !== '';
+        const cartaNaoBateComFiltroDeCategoria = categoriaSelecionada.toLowerCase() !== categoriaCarta.toLowerCase();
 
-        if (categoriaSelecionada !== "" && categoriaSelecionada > precoMaximoSelecionado) { mostrarCarta = false }
+        if (temFiltroDeCategoria && cartaNaoBateComFiltroDeCategoria) { mostrarCarta = false };
+
+        const temFiltroDePreco = precoMaximoSelecionado !== '';
+        const cartaNaoBateComFiltroDePrecoMaximo = parseFloat(precoCarta) > parseFloat(precoMaximoSelecionado);
+
+        if (temFiltroDePreco && cartaNaoBateComFiltroDePrecoMaximo) { mostrarCarta = false };
+
+        if (mostrarCarta === true) {
+            carta.classList.add('mostrar');
+            carta.classList.remove('esconder');
+        } else {
+            carta.classList.remove('mostrar');
+            carta.classList.add('esconder');
+        }
 
     });
 });
