@@ -1,18 +1,41 @@
-/* passo 1 - pegar o botao de aplicar filtros do HTML e mandar pro JS */
+function ajustarPaddingTopo() {
+  const cabecalho = document.querySelector('.cabecalho');
+  const container = document.querySelector('.container');
+
+  const altura = cabecalho.offsetHeight; // pega altura real do cabeçalho
+
+  container.style.paddingTop = altura + 'px';
+}
+
+// Ajusta ao carregar a página
+window.addEventListener('load', ajustarPaddingTopo);
+
+// Ajusta ao redimensionar a janela, caso altura mude
+window.addEventListener('resize', ajustarPaddingTopo);
+
+
 const botaoFiltrar = document.querySelector('.btn-filtrar');
+const campoCategoria = document.querySelector('#categoria');
+const campoPreco = document.querySelector('#preco');
 
+// Escutar tecla Enter
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        filtrarCartas();
+    }
+});
 
-/* passo 2- escutar o clique no botao de aplicar filtros */
-botaoFiltrar.addEventListener('click', function () {
+// Escutar clique no botão
+botaoFiltrar.addEventListener('click', filtrarCartas);
 
+// Escutar digitação nos filtros (filtrar em tempo real)
+campoCategoria.addEventListener('input', filtrarCartas);
+campoPreco.addEventListener('input', filtrarCartas);
 
-
-    // passo 3 - pegar os valores dos campos de categorias e preços
-    const categoriaSelecionada = document.querySelector('#categoria').value;
-    const precoMaximoSelecionado = document.querySelector('#preco').value;
-
-    // passo 4- para cada carta, verificar se ela deve ser mostrada ou escondida, baseado nos filtros que a pessoa digitou
-    //parte 1
+// Função para aplicar os filtros
+function filtrarCartas() {
+    const categoriaSelecionada = campoCategoria.value;
+    const precoMaximoSelecionado = campoPreco.value;
     const cartas = document.querySelectorAll(".carta");
 
     cartas.forEach(function (carta) {
@@ -21,23 +44,20 @@ botaoFiltrar.addEventListener('click', function () {
 
         let mostrarCarta = true;
 
-        const temFiltroDeCategoria = categoriaSelecionada !== '';
-        const cartaNaoBateComFiltroDeCategoria = categoriaSelecionada.toLowerCase() !== categoriaCarta.toLowerCase();
+        if (categoriaSelecionada && categoriaSelecionada.toLowerCase() !== categoriaCarta.toLowerCase()) {
+            mostrarCarta = false;
+        }
 
-        if (temFiltroDeCategoria && cartaNaoBateComFiltroDeCategoria) { mostrarCarta = false };
+        if (precoMaximoSelecionado && parseFloat(precoCarta) > parseFloat(precoMaximoSelecionado)) {
+            mostrarCarta = false;
+        }
 
-        const temFiltroDePreco = precoMaximoSelecionado !== '';
-        const cartaNaoBateComFiltroDePrecoMaximo = parseFloat(precoCarta) > parseFloat(precoMaximoSelecionado);
-
-        if (temFiltroDePreco && cartaNaoBateComFiltroDePrecoMaximo) { mostrarCarta = false };
-
-        if (mostrarCarta === true) {
+        if (mostrarCarta) {
             carta.classList.add('mostrar');
             carta.classList.remove('esconder');
         } else {
             carta.classList.remove('mostrar');
             carta.classList.add('esconder');
         }
-
     });
-});
+}

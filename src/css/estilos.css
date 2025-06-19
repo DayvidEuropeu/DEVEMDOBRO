@@ -5,6 +5,16 @@ body {
 /* Cabeçalho */
 
 .cabecalho {
+  position: fixed; /* fixa no topo */
+  top: 0;          /* distância do topo da janela */
+  left: 0;         /* alinha à esquerda */
+  width: 100%;     /* ocupa toda a largura */
+  background-color: white; /* fundo para não ficar transparente */
+  z-index: 1000;   /* para ficar acima de outros elementos */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* sombra opcional para destaque */
+}
+
+.cabecalho {
     background-color: rgb(31, 0, 59);
     display: flex;
     justify-content: center;
@@ -21,8 +31,8 @@ body {
     color: #6528D3;
     font-size: 24px;
     font-weight: 500;
-    margin-bottom: 32px;
-    line-height: 32px;
+    margin-bottom: 10;
+    line-height: 100px;
     letter-spacing: 2px;
 }
 
