@@ -2,6 +2,7 @@ Descrição:
 
 Este projeto exibe uma lista de cartas colecionáveis que podem ser filtradas dinamicamente pelo usuário através de filtros de categoria e preço máximo. A filtragem pode ser acionada ao clicar no botão, pressionar Enter ou simplesmente digitando nos campos.
 
+
 Tecnologias utilizadas:
 
 HTML5
@@ -9,6 +10,7 @@ HTML5
 CSS3
 
 JavaScript (Vanilla JS)
+
 
 Funcionalidades:
 
